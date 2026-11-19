@@ -1,0 +1,11 @@
+services:
+  node:
+    build: .
+    container_name: lb-node
+    restart: unless-stopped
+    env_file: .env          # TOKEN=, PANEL_URL=, NODE_TYPE= (written by install_node.sh)
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
